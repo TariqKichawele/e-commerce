@@ -1,16 +1,16 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { useUserStore } from './stores/useUserStore';
+import { useEffect } from 'react';
 
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import AdminPage from './pages/AdminPage';
+import CategoryPage from './pages/CategoryPage';
 
 import Navbar from './components/Navbar';
 import LoadingSpinner from './components/LoadingSpinner';
-
-import { Toaster } from 'react-hot-toast';
-import { useUserStore } from './stores/useUserStore';
-import { useEffect } from 'react';
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
@@ -39,6 +39,7 @@ function App() {
 						path='/secret-dashboard'
 						element={user?.role === "admin" ? <AdminPage /> : <Navigate to='/login' />}
 					/>
+          <Route path='/category/:category' element={<CategoryPage />}/>
         </Routes>
       </div>
 
