@@ -74,7 +74,7 @@ export const useProductStore = create((set) => ({
         set({ loading: true });
 
         try {
-            const res = await axios.put(`/products/${productId}`);
+            const res = await axios.patch(`/products/${productId}`);
             set((prevProducts) => ({
                 products: prevProducts.products.map((product) =>
                     product._id === productId ? { ...product, isFeatured: res.data.isFeatured } : product

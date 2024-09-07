@@ -14,7 +14,8 @@ const CreateProductForm = () => {
 		image: "",
   });
 
-  const { createProduct, loading } = useProductStore();
+  const { createProduct } = useProductStore();
+  const loading = false;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
