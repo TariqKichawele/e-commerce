@@ -2,6 +2,8 @@ import { Link } from "react-router-dom"
 import { motion } from 'framer-motion';
 import { UserPlus, Mail, Lock, User, ArrowRight, Loader } from "lucide-react";
 import { useState } from'react';
+import { useUserStore } from '../stores/useUserStore';
+import toast from "react-hot-toast";
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
@@ -11,11 +13,14 @@ const SignUpPage = () => {
 		confirmPassword: "",
 	});
 
-  const loading = false;
+  const { signup, loading } = useUserStore();
 
-  const handleSubmit = () => {
-    // TODO: Add form submission logic here
+  const handleSubmit = (e) => {
+    e.preventDefault();
+	signup(formData);
+	toast.success('Sign Up Success')
   }
+
   return (
     <div className='flex flex-col justify-center py-12 sm:px-6 lg:px-8'>
 			<motion.div
