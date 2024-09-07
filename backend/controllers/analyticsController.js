@@ -49,6 +49,16 @@ export const getDailySalesData = async (startDate, endDate) => {
             }
         ]);
 
+        // example of dailySalesData
+		// [
+		// 	{
+		// 		_id: "2024-08-18",
+		// 		sales: 12,
+		// 		revenue: 1450.75
+		// 	},
+		// ]
+
+
         const dateArray = getDatesInRange(startDate, endDate);
 
         return dateArray.map((date) => {
