@@ -1,10 +1,22 @@
 /* eslint-disable react/prop-types */
 import { ShoppingCart } from "lucide-react"
+import { useCartStore } from "../stores/useCartStore"
+import { useUserStore } from "../stores/useUserStore";
+import toast from "react-hot-toast";
 
 const ProductCard = ({ product }) => {
-    const handleAddToCart = () => {
+    const { addToCart } = useCartStore();
+	const { user } = useUserStore();
 
-    }
+	const handleAddToCart = () => {
+		if(!user) {
+			toast.error("Please log in to add items to your cart");
+            return;
+		} else {
+			addToCart(product);
+            toast.success("Item added to cart");
+		}
+	}
   return (
     <div className='flex w-full relative flex-col overflow-hidden rounded-lg border border-gray-700 shadow-lg'>
 			<div className='relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl'>

@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
+import { useCartStore } from "../stores/useCartStore";
 
 
 const FeaturedProducts = ({ featuredProducts }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 	const [itemsPerPage, setItemsPerPage] = useState(4);
+
+	const { addToCart } = useCartStore();
 
     useEffect(() => {
 		const handleResize = () => {
@@ -31,9 +34,6 @@ const FeaturedProducts = ({ featuredProducts }) => {
 	const isStartDisabled = currentIndex === 0;
 	const isEndDisabled = currentIndex >= featuredProducts.length - itemsPerPage;
 
-    const addToCart = () => {
-        
-    }
   return (
     <div className='py-12'>
 			<div className='container mx-auto px-4'>
