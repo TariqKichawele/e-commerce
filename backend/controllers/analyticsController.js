@@ -10,8 +10,8 @@ export const getAnalyticsData = async () => {
         {
             $group: {
                 _id: null,
-                totalSales: { $sum: "1" },
-                totalOrders: { $sum: "$totalAmount" }
+                totalSales: { $sum: 1 },
+                totalRevenue: { $sum: "$totalAmount" }
             }
         }
     ]);
@@ -40,8 +40,8 @@ export const getDailySalesData = async (startDate, endDate) => {
             {
                 $group: {
                     _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
-                    totalSales: { $sum: 1 },
-                    totalRevenue: { $sum: "$totalAmount" }
+                    sales: { $sum: 1 },
+                    revenue: { $sum: "$totalAmount" }
                 }
             },
             {
